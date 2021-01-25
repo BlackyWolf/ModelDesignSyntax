@@ -2,7 +2,7 @@
 
 A simple syntax I use for fleshing out model designs on the fly.
 
-## Rules
+# Rules
 
 - All names should use PascalCase for naming, e.g. `ExtendedIdentityResource`.
 - Names are case-sensitive
@@ -13,13 +13,13 @@ A simple syntax I use for fleshing out model designs on the fly.
 - Any indentation must use spaces instead of tabs and must be four characters in length
 - Braces should go on a new line to help with readability
 
-## Syntax
+# Syntax
 
 Anything wrapped in arrow brackets `<>` denotes a variable.
 
 Double forward slashes `//` mark comments.
 
-### Model
+## Model
 
 ```
 <name>
@@ -45,7 +45,7 @@ User
 }
 ```
 
-#### Inheritance
+### Inheritance
 
 Models may inherit from other models and share these derived properties. Inheritance is denoted by a tilde `~`. Only one tilde can be used per model.
 
@@ -88,13 +88,13 @@ ChevyElCamino ~ Car, Truck
 }
 ```
 
-### Property Descriptions
+## Property Descriptions
 
 A property description describes one value among several that are grouped together by a model.
 
 Syntax: `<property_name>: <type> [...(<flag>)] [d:<value>] [v:...<value>]`
 
-#### Flag
+### Flag
 
 Syntax: `(<flag>)`
 
@@ -116,7 +116,7 @@ Below a current list of flags. It is by no means definitive:
 - (r) - required
 - (ro) - read-only
 
-#### Default
+### Default
 
 Syntax: `[d:<value>]`
 
@@ -124,10 +124,36 @@ Denotes a default value for a property description. Any default value given must
 
 i.e. `IsDeleted: boolean [d:false]`
 
-#### Accepted Values
+### Accepted Values
 
 Syntax: `[v:...<value>]`
 
 Denotes a comma separated list of acceptable values for a property.
 
 i.e. `Direction: string [v:Up,Down,Left,Right]`
+
+### Relationship
+
+Syntax: `[rel:<Model>(<Property>)]`
+
+Denotes a relationship that ties the property of one model to the property of another model. The property types must match.
+
+i.e.
+
+```
+Library
+{
+    Id: integer (r)
+    Name: string (r)
+    OpeningTime: time (r) [d:07:00]
+    ClosingTime: time (r) [d:19:00]
+}
+
+LibraryBook
+{
+    Id: integer (r)
+    LibraryId: integer (r) [rel:Library(Id)]
+    Title: string (r)
+    PublishingDate: date (r)
+}
+```
