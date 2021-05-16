@@ -92,7 +92,20 @@ ChevyElCamino ~ Car, Truck
 
 A property description describes one value among several that are grouped together by a model.
 
-Syntax: `<property_name>: <type> [...(<flag>)] [d:<value>] [v:...<value>]`
+Syntax: `<property_name>: <type> ...(<flag>) [<rule>:<value>]`
+
+The `...` denotes multiple items, i.e. an array.
+
+Flags must be surrounded only by parenthesis.
+
+Any rule with a value must be surrounded by square braces and the name of the rule and the rule value separated by a colon.
+
+Flags must always appear before rules with values.
+
+There is no particular order in which flags or rules must be set in, other than what is mentioned above, but consistency is strongly encouraged. We recommend either alphabetical order, or, the following:
+
+- `(r) (ro) (d)` for flags
+- `[d:<value>] [min:<number>] [max:<number>] [rel:<Model>(<Property>)] [v:...<value>]` for rules
 
 ### Flag
 
@@ -112,7 +125,6 @@ Car
 Below a current list of flags. It is by no means definitive:
 
 - (d) - deprecated
-- (o) - optional
 - (r) - required
 - (ro) - read-only
 
@@ -124,13 +136,29 @@ Denotes a default value for a property description. Any default value given must
 
 i.e. `IsDeleted: boolean [d:false]`
 
-### Accepted Values
+### Minimum Limit
 
-Syntax: `[v:...<value>]`
+Syntax: `[min:<numbrt>]`
 
-Denotes a comma separated list of acceptable values for a property.
+Denotes the minimum amount required for a value to be acceptable on a property.
 
-i.e. `Direction: string [v:Up,Down,Left,Right]`
+- For strings, this is the string length
+- For numbers, this is the lowest numeric value
+- For arrays, this is the minimum amount of items
+
+i.e. `IsDeleted: boolean [d:false]`
+
+### Maximum Limit
+
+Syntax: `[max:<number>]`
+
+Denotes the maximum amount allowed for a value to be acceptable on a property.
+
+- For strings, this is the string length
+- For numbers, this is the highest numeric value
+- For arrays, this is the maximum amount of items
+
+i.e. `IsDeleted: boolean [d:false]`
 
 ### Relationship
 
@@ -157,3 +185,11 @@ LibraryBook
     PublishingDate: date (r)
 }
 ```
+
+### Accepted Values
+
+Syntax: `[v:...<value>]`
+
+Denotes a comma separated list of acceptable values for a property.
+
+i.e. `Direction: string [v:Up,Down,Left,Right]`
