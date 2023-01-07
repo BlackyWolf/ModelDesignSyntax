@@ -146,7 +146,7 @@ Denotes the minimum amount required for a value to be acceptable on a property.
 - For numbers, this is the lowest numeric value
 - For arrays, this is the minimum amount of items
 
-i.e. `IsDeleted: boolean [d:false]`
+i.e. `Name: string [min:1]`
 
 ### Maximum Limit
 
@@ -158,7 +158,7 @@ Denotes the maximum amount allowed for a value to be acceptable on a property.
 - For numbers, this is the highest numeric value
 - For arrays, this is the maximum amount of items
 
-i.e. `IsDeleted: boolean [d:false]`
+i.e. `Name: string [max:50]`
 
 ### Relationship
 
