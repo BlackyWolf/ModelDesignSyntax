@@ -138,7 +138,7 @@ i.e. `IsDeleted: boolean [d:false]`
 
 ### Minimum Limit
 
-Syntax: `[min:<numbrt>]`
+Syntax: `[min:<number>]`
 
 Denotes the minimum amount required for a value to be acceptable on a property.
 
